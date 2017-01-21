@@ -5,6 +5,8 @@
     console.log("Listening for Sessions on 3000");
 
     _.connection = function(socket) {
+        console.log("Connected ");
+
         socket.on("identity", function(data) {
             if (data && data.type) {
                 if (data.type.toLowerCase() == "host") {
