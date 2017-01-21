@@ -16,3 +16,8 @@ listener.sockets.on('connection', function(socket) {
     // Begin handling connections
     session.connection(socket);
 });
+
+var dashboard = require('./app/Dashboard/dashboard.js');
+listener.sockets.on('saveController', function(details) {
+    dashboard.saveController();
+});
