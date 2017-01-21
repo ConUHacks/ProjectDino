@@ -18,6 +18,8 @@
                             dpad:   {type: 'dpad', x: 25, y: 25},
                             analog: {type: 'analog', x: 40, y: 40},
                         },
+                        // optional user limit
+                        userLimit: 4,
                     };
 
                     hosts.push(new Host(socket, details));
@@ -51,9 +53,20 @@
         var users = [];
 
         this.addUser = function(user) {
-            users.push(user);
-            user.stateFromTemplate(details.template);
-            user.setHost(this);
+            if (users.length <= (details.userLimit || Number.POSITIVE_INFINITY)) {
+                users.push(user);
+                user.init(details.template, this);
+                socket.emit('ready', {
+                    id: users.indexOf(user),
+                });
+            }
+        };
+
+        this.updateState = function(user, state) {
+            socket.emit('state', {
+                id: users.indexOf(users),
+                state: state,
+            });
         };
 
         // Do a look up on this narb
@@ -64,7 +77,8 @@
         var host;
         var inputs = {};
 
-        this.stateFromTemplate = function(template) {
+        this.ready = false;
+        this.init = function(template, hostObject) {
             for (var i = 0, keys = Object.keys(template); i < keys.length; ++i) {
                 var title = keys[i];
                 var input = template[title];
@@ -85,10 +99,20 @@
                         break;
                 }
             }
-        };
 
-        this.setHost = function(hostObject) {
             host = hostObject;
+
+            socket.on("state", function(input) {
+                if (input.name && inputs[input.name]) {
+                    inputs[input.name].setState(input.value, input.index);
+                    host.updateState(this, inputs[input.name]);
+                }
+                else {
+                    // Wrong controller template?
+                }
+            });
+
+            this.ready = true;
         };
     }
 
