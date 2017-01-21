@@ -5,7 +5,7 @@ var io = require('socket.io')(server);
 var listener = io.listen(server);
 
 app.use("/", express.static("public/dashboard/"));
-server.listen(3000, '172.31.26.149', function() {});
+server.listen(600, function() {});
 
 app.get("/dan", function(req, res, next) {
     // req = request;
