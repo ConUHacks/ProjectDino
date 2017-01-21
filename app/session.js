@@ -2,7 +2,7 @@
 (function(_) {
     var hosts = [];
 
-    console.log("Listening for Sessions on 3000");
+    console.log("Listening for Sessions");
 
     _.connection = function(socket) {
         console.log("Connected 1");
