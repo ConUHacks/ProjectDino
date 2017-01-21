@@ -5,7 +5,7 @@
     console.log("Listening for Sessions on 3000");
 
     _.connection = function(socket) {
-        console.log("Connected ");
+        console.log("Connected 1");
 
         socket.on("identity", function(data) {
             if (data && data.type) {

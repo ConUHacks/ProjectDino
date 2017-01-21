@@ -5,7 +5,7 @@ var io = require('socket.io')(server);
 var listener = io.listen(server);
 
 app.use("/", express.static("public/dashboard/"));
-server.listen(3000, function() {});
+server.listen(3000, '172.31.26.149', function() {});
 
 app.get("/dan", function(req, res, next) {
     // req = request;
@@ -25,6 +25,8 @@ app.get("/dan", function(req, res, next) {
 
 var session = require('./app/session.js')
 listener.sockets.on('connection', function(socket) {
+    console.log("Connection 0");
+
     // Begin handling connections
     session.connection(socket);
 });
