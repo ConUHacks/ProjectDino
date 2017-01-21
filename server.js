@@ -11,5 +11,6 @@ io.on('connection', function(socket) {
     // Begin handling connections
     session.connection(socket);
 });
+app.use("/", express.static("public/dashboard/"));
 
 server.listen(3000, function() {});
