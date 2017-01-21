@@ -12,7 +12,7 @@ app.get("/dan", function(req, res, next) {
     // res = response;
     // next = next function in chain
 
-    // Return the json datatype 
+    // Return the json datatype
     res.json({
         status: "hi",
     });
@@ -27,9 +27,4 @@ var session = require('./app/session.js')
 listener.sockets.on('connection', function(socket) {
     // Begin handling connections
     session.connection(socket);
-});
-
-var dashboard = require('./app/Dashboard/dashboard.js');
-listener.sockets.on('saveController', function(details) {
-    dashboard.saveController();
 });
