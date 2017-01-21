@@ -23,25 +23,38 @@
                     };
 
                     hosts.push(new Host(socket, details));
+                    socket.emit("identity", { success: "true", });
                 }
                 else if (data.type.toLowerCase() == "user") {
+                    var success = false;
+
                     // Search hosts for matching session key
                     for (var i = 0; i < hosts.length; ++i) {
                         var host = hosts[i];
 
                         if (host.sessionKey == data.sessionKey) {
                             host.addUser(new User(socket, data));
+                            success = true;
                         }
+                    }
+
+                    if (success) {
+                        socket.emit("identity", { success: "true", });
+                    }
+                    else {
+                        socket.emit("identity", { error: "No matching session keys", });
                     }
                 }
                 else {
                     // Undefined identity object
                     console.log("Undefined identity attempt");
+                    socket.emit("identity", { error: "Undefined identity attempt", });
                 }
             }
             else {
                 // Undefined identity object
                 console.log("Undefined identity attempt");
+                socket.emit("identity", { error: "Undefined identity attempt", });
             }
         });
     };
