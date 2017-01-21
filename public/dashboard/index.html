@@ -14,6 +14,19 @@
 
     </body>
     <script>
-        var socket = io();
+        var DinoAPI;
+        (function(_) {
+            var socket = io();
+
+            socket.emit("identity", {
+                type: "user",
+                key: "123345",
+            });
+
+            socket.on("identity", function(response) {
+                console.log(response);
+            });
+        })
+        (DinoAPI || (DinoAPI = {}));
     </script>
 </html>
