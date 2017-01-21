@@ -2,13 +2,14 @@
 (function(_) {
     var hosts = [];
 
+    console.log("Listening for Sessions on 3000");
+
     _.connection = function(socket) {
         socket.on("identity", function(data) {
             if (data && data.type) {
                 if (data.type.toLowerCase() == "host") {
                     // TODO Verify API key and grab data
                     // This is temp data
-
                     var details = {
                         name: "ConU",
                         key: "CONU_0123456789",
@@ -23,13 +24,22 @@
                 }
                 else if (data.type.toLowerCase() == "user") {
                     // Search hosts for matching session key
+                    for (var i = 0; i < hosts.length; ++i) {
+                        var host = hosts[i];
+
+                        if (host.sessionKey == data.sessionKey) {
+                            host.addUser(new User(socket, data));
+                        }
+                    }
                 }
                 else {
                     // Undefined identity object
+                    console.log("Undefined identity attempt");
                 }
             }
             else {
                 // Undefined identity object
+                console.log("Undefined identity attempt");
             }
         });
     };
@@ -38,34 +48,48 @@
      * Socket Objects
      */
     function Host(socket, details) {
-        // Create input state objects
-        var inputs = {};
+        var users = [];
 
-        // Iterate through details and add new input objects to inputs
-        for (var i = 0, keys = Object.keys(details.template); i < keys.length; ++i) {
-            var title = keys[i];
-            var input = details.template[title];
+        this.addUser = function(user) {
+            users.push(user);
+            user.stateFromTemplate(details.template);
+            user.setHost(this);
+        };
 
-            // Maybe move this to a config?
-            switch (input.type) {
-                case 'button':
-                    input[title] = new InputButton(title, input.x, input.y);
-                    break;
-                case 'dpad':
-                    input[title] = new InputDPad(title, input.x, input.y);
-                    break;
-                case 'analog':
-                    input[title] = new InputAnalog(title, input.x, input.y);
-                    break;
-                default:
-                    // Undefined input type, ignore for now
-                    break;
-            }
-        }
+        // Do a look up on this narb
+        this.sessionKey = Math.floor(Math.random()*(Math.pow(36, 6) - 100000) + 100000).toString(36);
     }
 
     function User(socket, details) {
+        var host;
+        var inputs = {};
 
+        this.stateFromTemplate = function(template) {
+            for (var i = 0, keys = Object.keys(template); i < keys.length; ++i) {
+                var title = keys[i];
+                var input = template[title];
+
+                // Maybe move this to a config?
+                switch (input.type) {
+                    case 'button':
+                        input[title] = new InputButton(title, input.x, input.y);
+                        break;
+                    case 'dpad':
+                        input[title] = new InputDPad(title, input.x, input.y);
+                        break;
+                    case 'analog':
+                        input[title] = new InputAnalog(title, input.x, input.y);
+                        break;
+                    default:
+                        // Undefined input type, ignore for now
+                        break;
+                }
+            }
+        };
+
+        this.setHost = function(hostObject) {
+            host = hostObject;
+        };
     }
 
     /**
@@ -119,6 +143,5 @@
             };
         };
     }
-
 })
 (exports || (exports = {}));
