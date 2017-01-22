@@ -10,7 +10,7 @@
 
   </head>
   <body>
-    
+
     <div id ="FullContainer">
       <div id="divcontainer">
 
@@ -133,8 +133,6 @@
         for (var i = 0; i < container.children.length; ++i) {
             var input = container.children[i];
 
-            console.log();
-
             // Check to see which ones aren't hidden
             if (input.style.display != "none") {
                 var label;
@@ -164,7 +162,7 @@
                     type: input.children[0].alt,
                     x: input.offsetLeft - input.parentElement.offsetLeft,
                     y: input.offsetTop - input.parentElement.offsetTop,
-                    controller: controller
+                    //controller: controller
                 };
               } else if(label.innerHTML != ""){
                 console.log(label);
@@ -174,22 +172,24 @@
                     x: input.offsetLeft - input.parentElement.offsetLeft,
                     y: input.offsetTop - input.parentElement.offsetTop,
                     label: label.innerHTML,
-                    controller: controller
+                    //controller: controller
                 };
                 }
             }
 
         }
         var newResult = {};
-        newResult["details"] = result;
+        newResult.template = result;
+        newResult.name = controller;
         console.log(JSON.stringify(newResult));
 
         $.ajax({
-          url: 'http://ec2-54-147-250-149.compute-1.amazonaws.com:3000/saveController',    //Your api url
+          //url: 'http://localhost:3000/save',
+          url: 'http://ec2-54-147-250-149.compute-1.amazonaws.com:3000/save',
           contentType:"application/json",
-          type: 'PUT',   //type is any HTTP method
+          type: 'POST',   //type is any HTTP method
           success: function(data) {
-            alert('Load was performed.');
+            //alert('Load was performed.');
           },
           data:JSON.stringify(newResult)
         });

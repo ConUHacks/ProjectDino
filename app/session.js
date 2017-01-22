@@ -4,31 +4,63 @@
 
     console.log("Listening for Sessions");
 
+    var mongodb = require('mongodb');
+    var client = mongodb.MongoClient;
+    var database;
+
+    client.connect('mongodb://localhost:27017/Dino', function (err, db) {
+        if (err) {
+            console.log('Unable to connect to the mongoDB server. Error:', err);
+        } else {
+            database = db;
+        }
+    });
+
+    _.saveTemplate = function(template) {
+        var collection = database.collection('controllers');
+        collection.insertOne(template)
+        .then(function(result) {
+            console.log("Saved");
+        });
+    };
+
     _.connection = function(socket) {
         socket.on("identity", function(data) {
             if (data && data.type) {
                 if (data.type.toLowerCase() == "host") {
 
-                    // TODO Verify API key and grab data
-                    // This is temp data
-                    var details = {
-                        name: "ConU",
-                        key: "CONU_0123456789",
-                        template: templates[data.apiKey],
-                        userLimit: 4,
-                    };
-                    if(details.template == null){
-                        console.log("Undefined identity attempt on data");
-                        socket.emit("identity", { error: "Undefined identity attempt", });
-                        return;
-                    }
+                    var collection = database.collection('controllers');
+                    collection.findOne({
+                        name: data.apiKey,
+                    })
+                    .then(function(result) {
+                        if (result == null) {
+                            socket.emit("identity", { error: "No matching api key", });
+                        }
+                        else {
+                            // TODO Verify API key and grab data
+                            // This is temp data
+                            var details = {
+                                name: data.apiKey,
+                                key: data.apiKey,
+                                template: result.template,//templates[data.apiKey],
+                                userLimit: 100,
+                            };
 
-                    var host = new Host(socket, details);
-                    hosts.push(host);
+                            /*if (details.template == null){
+                                console.log("Undefined identity attempt on data");
+                                socket.emit("identity", { error: "Undefined identity attempt", });
+                                return;
+                            }*/
 
-                    socket.emit("identity", {
-                        success: "true",
-                        key: host.sessionKey,
+                            var host = new Host(socket, details);
+                            hosts.push(host);
+
+                            socket.emit("identity", {
+                                success: "true",
+                                key: host.sessionKey,
+                            });
+                        }
                     });
                 }
                 else if (data.type.toLowerCase() == "user") {

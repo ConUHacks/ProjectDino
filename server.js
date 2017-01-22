@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/", express.static("public/dashboard/"));
 server.listen(3000, function() {});
 
-var dashboard = require('./app/Dashboard/dashboard.js');
+/*var dashboard = require('./app/Dashboard/dashboard.js');
 app.put("/saveController", function(req, res, next) {
     // req = request;
     // res = response;
@@ -59,7 +59,8 @@ app.post("/search", function(req, res, next) {
     res.status(200).json({
         success: documents
     });
-});
+});*/
+
 /**
  * SERVER SESSIONS
  */
@@ -70,5 +71,8 @@ io.on('connection', function(socket) {
     session.connection(socket);
 });
 app.use("/", express.static("public/dashboard/"));
+app.post("/save", function(req, res, next) {
+    session.saveTemplate(req.body || req.params || req.query);
+});
 
 server.listen(3000, function() {});
