@@ -151,19 +151,19 @@
 
                 // Maybe move this to a config?
                 switch (input.type) {
-                    case 'button':
+                    case 'CIRCLE':
                         inputs[title] = new InputButton(title, input.x, input.y);
                         break;
-                    case 'dpad':
+                    case 'DPAD':
                         inputs[title] = new InputDPad(title, input.x, input.y);
                         break;
                     case 'analog':
                         inputs[title] = new InputAnalog(title, input.x, input.y);
                         break;
-                    case 'label':
+                    case 'LABEL':
                         inputs[title] = new OutputLabel(title, input.text, input.x, input.y);
                         break;
-                    case 'gyro':
+                    case 'GYRO':
                         inputs[title] = new InputGyro(title);
                         break;
                     default:
