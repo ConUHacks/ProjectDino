@@ -90,7 +90,7 @@
 
         this.updateState = function(user, state) {
             socket.emit('state', {
-                id: users.indexOf(users),
+                id: users.indexOf(user),
                 state: state,
             });
         };
@@ -135,9 +135,6 @@
             host = hostObject;
 
             socket.on("state", function(input) {
-                console.log(input);
-                console.log(inputs);
-
                 if (input.name && inputs[input.name]) {
                     inputs[input.name].setState(input.value, input.index);
                     host.updateState(this, inputs[input.name]);
