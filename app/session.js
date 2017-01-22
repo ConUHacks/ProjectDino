@@ -14,7 +14,7 @@
                     var details = {
                         name: "ConU",
                         key: "CONU_0123456789",
-                        template: templates[apiKey];
+                        template: templates[apiKey],
                         userLimit: 4,
                     };
 
@@ -243,6 +243,6 @@
             label1:  {type: 'label',  x: 10, y: 10, text:'Paper'},
             label2:  {type: 'label',  x: 10, y: 16, text:'Sissors'}
         }
-    }
+    };
 })
 (exports || (exports = {}));
