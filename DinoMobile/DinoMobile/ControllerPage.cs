@@ -208,7 +208,6 @@ namespace DinoMobile
                                 JObject stuff = new JObject();
                                 stuff.Add("name", name);
                                 stuff.Add("value", yrad);
-                                stuff.Add("index", 0);
                                 Dino_API.sendMessage("state", stuff);
                                 break;
                         }

@@ -14,12 +14,13 @@
                         name: "ConU",
                         key: "CONU_0123456789",
                         template: {
-                            A: {type: 'button', x: 1, y: 1},
+                            GyroY:{type:'gyro'},
+                            /*A: {type: 'button', x: 1, y: 1},
                             B: {type: 'button', x: 1, y: 7},
                             C: {type: 'button', x: 1, y: 13},
                             label0:  {type: 'label',  x: 10, y: 3, text:'Rock'},
                             label1:  {type: 'label',  x: 10, y: 10, text:'Paper'},
-                            label2:  {type: 'label',  x: 10, y: 16, text:'Sissors'},
+                            label2:  {type: 'label',  x: 10, y: 16, text:'Sissors'},*/
                             /*dpad:   {type: 'dpad', x: 25, y: 25},
                             analog: {type: 'analog', x: 40, y: 15},*/
                         },
@@ -133,6 +134,9 @@
                     case 'label':
                         inputs[title] = new OutputLabel(title, input.text, input.x, input.y);
                         break;
+                    case 'gyro':
+                        inputs[title] = new InputGyro(title);
+                        break;
                     default:
                         // Undefined input type, ignore for now
                         break;
@@ -206,6 +210,17 @@
                 state: state,
                 x: x,
                 y: y,
+            };
+        };
+    }
+
+    function InputGyro(title) {
+        var state = 0;
+        this.toScheme = function() {
+            return {
+                title: title,
+                type: "gyro",
+                state: state,
             };
         };
     }

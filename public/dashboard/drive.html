@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Dashboard</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Dashboard">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+        <!-- Include socket -->
+        <!-- <script src="http://10.217.94.247:3000/socket.io/socket.io.js"></script> -->
+    </head>
+    <body>
+        <div id="chosen"></div>
+    </body>
+    <script src="api.js"></script>
+    <script>
+
+    var server = new DinoAPI("API_KEY");
+    var players = {};
+    var playerCount = 0;
+
+    server.startHost(function(sessionKey) {
+        document.body.innerHTML += "KEY " + sessionKey + "</br>";
+    });
+
+    server.onPlayer = function(id) {
+        players[id] = {
+            direction: 0, //-1: left, 0: straight, 1: right
+            drawn: false,
+        };
+
+        ++playerCount;
+    };
+
+    // Set Direction
+    server.onEvent("Gyro0", function(response) {
+        players[response.id].direction = response.state.state;
+    });
+
+    window.setInterval(function() {
+        for (var i = 0; i < players.length; i++) {
+            if(!players[i].drawn){
+                //draw input
+                var input = document.createElement("input");
+                input.type = "text";
+                input.id = "direction-"+i;
+                document.body.appendChild(input);
+            }else{
+                var input = document.getElementById('direction-'+i);
+                input.value = players[i].direction;
+            }
+        }
+    });
+
+    </script>
+</html>
