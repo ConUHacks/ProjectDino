@@ -17,11 +17,12 @@
 
     _.saveController = function(params) {
         var collection = database.collection('Controllers');
-        collection.insertOne(params["details"]);
-        collection = database.collection('Orgs');
-        var controllers = params["details"]["controllers"];
-        controllers.push(params["details"]["id"]);
-        collection.update("{id:\"" + params["details"]["id"] + "\"", "{$set: {controllers: " + controllers + "}}");
+        console.log(params + "hello");
+        // collection.insertOne(params["details"]);
+        // collection = database.collection('Orgs');
+        // var controllers = params["details"]["controllers"];
+        // controllers.push(params["details"]["id"]);
+        // collection.update("{id:\"" + params["details"]["id"] + "\"", "{$set: {controllers: " + controllers + "}}");
         database.close();
     }
 
@@ -35,6 +36,6 @@
         var collection = database.collection('Orgs');
         var password = database.collection.find("{user_name: " + params["user_name"] + "}", "{password: 1}");
 
-        return (password == params["password"]);        
+        return (password == params["password"]);
     }
 })(exports || (exports = {}));
