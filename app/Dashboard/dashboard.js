@@ -19,10 +19,6 @@
         var collection = database.collection('Controllers');
         console.log(params + "hello");
         collection.insertOne(params["details"]);
-        // collection = database.collection('Orgs');
-        // var controllers = params["details"]["controllers"];
-        // controllers.push(params["details"]["id"]);
-        // collection.update("{id:\"" + params["details"]["id"] + "\"", "{$set: {controllers: " + controllers + "}}");
         database.close();
     }
 
