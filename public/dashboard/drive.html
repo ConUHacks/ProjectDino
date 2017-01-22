@@ -11,6 +11,7 @@
     </head>
     <body>
         <div id="chosen"></div>
+        <canvas id="canvas" width="800" height="800" style="border: 2px solid #333;"></canvas>
     </body>
     <script src="api.js"></script>
     <script>
@@ -18,6 +19,24 @@
     var server = new DinoAPI("DRIVE_DEMO");
     var players = {};
     var playerCount = 0;
+
+
+
+
+    x = 0;
+    y = 0;
+    speed = 5;
+    angle = 0;
+    mod = 0;
+
+    canvas = document.getElementById("canvas");
+    context = canvas.getContext("2d");
+    car = new Image();
+    car.src = "http://i.imgur.com/uwApbV7.png";
+
+
+
+
 
     server.startHost(function(sessionKey) {
         document.body.innerHTML += "KEY " + sessionKey + "</br>";
@@ -42,7 +61,30 @@
         console.log(response);
         players[response.id].direction = response.state.state;
         document.getElementById('direction-'+i).value = response.state.state;
+        angle += response.state.state;
     });
+
+
+    function draw() {
+        context = canvas.getContext("2d");
+        context.clearRect(0, 0, 800, 800);
+
+        context.fillStyle = "rgb(200, 100, 220)";
+        context.fillRect(50, 50, 100, 100);
+
+        x += (speed * mod) * Math.cos(Math.PI / 180 * angle);
+        y += (speed * mod) * Math.sin(Math.PI / 180 * angle);
+
+        context.save();
+        context.translate(x, y);
+        context.rotate(Math.PI / 180 * angle);
+        context.drawImage(car, -(car.width / 2), -(car.height / 2));
+        context.restore();
+    }
+
+    var moveInterval = setInterval(function () {
+        draw();
+    }, 30);
 
     </script>
 </html>

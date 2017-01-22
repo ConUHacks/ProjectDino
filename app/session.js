@@ -17,6 +17,11 @@
                         template: templates[data.apiKey],
                         userLimit: 4,
                     };
+                    if(details.template == null){
+                        console.log("Undefined identity attempt on data");
+                        socket.emit("identity", { error: "Undefined identity attempt", });
+                        return;
+                    }
 
                     var host = new Host(socket, details);
                     hosts.push(host);
@@ -234,7 +239,10 @@
         };
     }
     var templates = {
-        "DRIVE_DEMO" :{GyroY:{type:'gyro'}},
+        "DRIVE_DEMO" :{
+            GyroY:{type:'gyro'},
+            label0:  {type: 'label',  x: 1, y: 1, text:'DRIVING!!'},
+        },
         "RPS_DEMO":{
             A: {type: 'button', x: 1, y: 1},
             B: {type: 'button', x: 1, y: 7},
