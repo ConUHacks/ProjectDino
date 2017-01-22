@@ -245,11 +245,11 @@
         },
         "RPS_DEMO":{
             A: {type: 'button', x: 1, y: 1},
-            B: {type: 'button', x: 1, y: 7},
-            C: {type: 'button', x: 1, y: 13},
+            B: {type: 'button', x: 1, y: 13},
+            C: {type: 'button', x: 1, y: 26},
             label0:  {type: 'label',  x: 10, y: 3, text:'Rock'},
-            label1:  {type: 'label',  x: 10, y: 10, text:'Paper'},
-            label2:  {type: 'label',  x: 10, y: 16, text:'Sissors'}
+            label1:  {type: 'label',  x: 10, y: 16, text:'Paper'},
+            label2:  {type: 'label',  x: 10, y: 32, text:'Sissors'}
         }
     };
 })
