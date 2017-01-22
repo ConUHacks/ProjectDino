@@ -11,7 +11,7 @@
     </head>
     <body>
         <div id="chosen"></div>
-        <canvas id="canvas" width="800" height="800" style="border: 2px solid #333;"></canvas>
+        <canvas id="canvas" width="400" height="400" style="border: 2px solid #333;"></canvas>
     </body>
     <script src="api.js"></script>
     <script>
@@ -47,10 +47,9 @@
             direction: 0, //-1: left, 0: straight, 1: right
             drawn: false,
         };
-        var input = document.createElement("input");
-        input.type = "text";
-        input.id = "direction-"+id;
-        document.body.appendChild(input);
+        var moveInterval = setInterval(function () {
+            draw();
+        }, 30);
 
         ++playerCount;
     };
@@ -81,10 +80,6 @@
         context.drawImage(car, -(car.width / 2), -(car.height / 2));
         context.restore();
     }
-
-    var moveInterval = setInterval(function () {
-        draw();
-    }, 30);
 
     </script>
 </html>
