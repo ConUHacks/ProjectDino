@@ -16,11 +16,12 @@
     <script>
         var DinoAPI;
         (function(_) {
+            //"ws://ec2-54-147-250-149.compute-1.amazonaws.com:3000/"
             var socket = io();
 
             socket.emit("identity", {
-                type: "user",
-                key: "123345",
+                type: "host",
+                apiKey: "123345",
             });
 
             socket.on("identity", function(response) {

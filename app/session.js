@@ -6,8 +6,6 @@
 
     _.connection = function(socket) {
         socket.on("identity", function(data) {
-            console.log(data);
-
             if (data && data.type) {
                 if (data.type.toLowerCase() == "host") {
                     // TODO Verify API key and grab data
