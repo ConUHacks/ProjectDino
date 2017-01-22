@@ -65,19 +65,19 @@
       </div>
 
       <div id="wrap14">
-        <h1 id="message1"></h1>
+        <p id="message1" alt="LABEL"></p>
       </div>
       <div id="wrap15">
-        <h1 id="message2"></h1>
+        <p id="message2" alt="LABEL"></p>
       </div>
       <div id="wrap16">
-        <h1 id="message3"></h1>
+        <p id="message3" alt="LABEL"></p>
       </div>
       <div id="wrap17">
-        <h1 id="message4"></h1>
+        <h1 id="message4" alt="LABEL"></h1>
       </div>
       <div id="wrap18">
-        <h1 id="message5"></h1>
+        <h1 id="message5" alt="LABEL"></h1>
       </div>
     </div>
 
@@ -106,8 +106,8 @@
     <label>Enter Label:</label><input id="name1" type ="text"/><br/>
     <label>Enter Label:</label><input id="name2" type ="text"/><br/>
     <label>Enter Label:</label><input id="name3" type ="text"/><br/>
-    <label>Enter Label:</label><input id="name4" type ="text"/><br/>
-    <label>Enter Label:</label><input id="name5" type ="text"/><br/>
+    <label>Enter BIG Label:</label><input id="name4" type ="text"/><br/>
+    <label>Enter BIG Label:</label><input id="name5" type ="text"/><br/>
 
     <button onclick="save()">SAVE</button>
 
@@ -125,15 +125,31 @@
 
             // Check to see which ones aren't hidden
             if (input.style.display != "none") {
+                var label;
+
+                if(input.id == "wrap14"){
+                  label = document.getElementById(message1);
+                } else if (input.id == "wrap15") {
+                  label = document.getElementById(message2);
+                } else if (input.id == "wrap16") {
+                  label = document.getElementById(message3);
+                } else if (input.id == "wrap17") {
+                  label = document.getElementById(message4);
+                } else if (input.id == "wrap18") {
+                  label = document.getElementById(message5);
+                }
+
                 result[input.children[0].id] =
                 {
                     type: input.children[0].alt,
                     x: input.offsetLeft - input.parentElement.offsetLeft,
                     y: input.offsetTop - input.parentElement.offsetTop,
+                    label: label
                 };
             }
 
         }
+
         $.ajax({
           url: 'http://ec2-54-147-250-149.compute-1.amazonaws.com:3000/saveController',    //Your api url
           contentType:"application/json",
@@ -143,7 +159,7 @@
           },
           data:JSON.stringify(result)
         });
-
+        console.log(JSON.stringify(result));
         console.log(result);
     }
 
