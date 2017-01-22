@@ -15,9 +15,9 @@ app.put("/saveController", function(req, res, next) {
     // res = response;
     // next = next function in chain
     console.log("hello");
-    dashboard.saveController(req.body);
+    // dashboard.saveController(req.body);
     // Return the json datatype
-    res.status(500).json({error: "There was an error."})
+    // res.status(500).json({error: "There was an error."})
     res.status(200).json({
         success: "true"
     });
