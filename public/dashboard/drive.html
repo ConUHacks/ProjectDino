@@ -15,7 +15,7 @@
     <script src="api.js"></script>
     <script>
 
-    var server = new DinoAPI("API_KEY");
+    var server = new DinoAPI("DRIVE_DEMO");
     var players = {};
     var playerCount = 0;
 
@@ -30,7 +30,7 @@
         };
         var input = document.createElement("input");
         input.type = "text";
-        input.id = "direction-"+i;
+        input.id = "direction-"+id;
         document.body.appendChild(input);
 
         ++playerCount;

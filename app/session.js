@@ -8,23 +8,13 @@
         socket.on("identity", function(data) {
             if (data && data.type) {
                 if (data.type.toLowerCase() == "host") {
+
                     // TODO Verify API key and grab data
                     // This is temp data
                     var details = {
                         name: "ConU",
                         key: "CONU_0123456789",
-                        template: {
-                            GyroY:{type:'gyro'},
-                            /*A: {type: 'button', x: 1, y: 1},
-                            B: {type: 'button', x: 1, y: 7},
-                            C: {type: 'button', x: 1, y: 13},
-                            label0:  {type: 'label',  x: 10, y: 3, text:'Rock'},
-                            label1:  {type: 'label',  x: 10, y: 10, text:'Paper'},
-                            label2:  {type: 'label',  x: 10, y: 16, text:'Sissors'},*/
-                            /*dpad:   {type: 'dpad', x: 25, y: 25},
-                            analog: {type: 'analog', x: 40, y: 15},*/
-                        },
-                        // optional user limit
+                        template: templates[apiKey];
                         userLimit: 4,
                     };
 
@@ -242,6 +232,17 @@
                 y: y,
             };
         };
+    }
+    var templates = {
+        "DRIVE_DEMO" :{GyroY:{type:'gyro'}},
+        "RPS_DEMO":{
+            A: {type: 'button', x: 1, y: 1},
+            B: {type: 'button', x: 1, y: 7},
+            C: {type: 'button', x: 1, y: 13},
+            label0:  {type: 'label',  x: 10, y: 3, text:'Rock'},
+            label1:  {type: 'label',  x: 10, y: 10, text:'Paper'},
+            label2:  {type: 'label',  x: 10, y: 16, text:'Sissors'}
+        }
     }
 })
 (exports || (exports = {}));
