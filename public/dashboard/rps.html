@@ -10,7 +10,7 @@
         <!-- <script src="http://10.217.94.247:3000/socket.io/socket.io.js"></script> -->
     </head>
     <body>
-
+        <div id="chosen"></div>
     </body>
     <script src="api.js"></script>
     <script>
@@ -73,6 +73,14 @@
                     ++state;
                 }
 
+                if (players[0].choise != -1) {
+                    document.getElementById("chosen").innerHTML = "Player 0 chosen";
+                }
+
+                if (players[1].choise != -1) {
+                    document.getElementById("chosen").innerHTML = "Player 1 chosen";
+                }
+
                 break;
             // Display winners
             case 2:
@@ -81,38 +89,29 @@
                          (players[0].choice == 2 && players[1].choice == 1)) {
 
                     // player 0 wins
-                    winner = 0;
                     ++players[0].score;
+                    document.body.innerHTML += "Player 0 wins";
                 }
                 else if ((players[1].choice == 0 && players[0].choice == 2) ||
                          (players[1].choice == 1 && players[0].choice == 0) ||
                          (players[1].choice == 2 && players[0].choice == 1)) {
 
                     // player 1 wins
-                    winner = 1;
                     ++players[1].score;
+                    document.body.innerHTML += "Player 1 wins";
                 }
                 else {
-                    // tie
+                    document.body.innerHTML += "Tie";
                 }
 
-                console.log("Winner: " + winner);
-
-                winWait = new Date();
                 ++state;
 
                 break;
             // Cleanup restart
             case 3:
-                if (winWait > 1000) {
-                    players[0].choice = -1;
-                    players[1].choice = -1;
-                    winner = -1;
-                    state = 1;
-                }
-                else {
-                    // draw results
-                }
+                players[0].choice = -1;
+                players[1].choice = -1;
+                state = 1;
                 break;
             default:
                 state = 0;
