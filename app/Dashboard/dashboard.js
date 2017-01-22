@@ -24,6 +24,7 @@
 
     _.search = function(params) {
         var collection = database.collection('Controllers');
+        console.log("hello");
         var documents = database.collection.find("{\"serviceName\": \"" + params["serviceName"] + "\"}");
         database.close();
         return documents;
