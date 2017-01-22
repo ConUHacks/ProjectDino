@@ -11,7 +11,7 @@
     </head>
     <body>
         <div id="chosen"></div>
-        <img style="position: absolute; top:40; left: 40;" src="http://i.imgur.com/uwApbV7.png">
+        <img style="position: absolute; top:40px; left: 40px;" src="http://i.imgur.com/uwApbV7.png">
         <canvas id="canvas" width="400" height="400"></canvas>
     </body>
     <script id="car" src="api.js"></script>
@@ -61,8 +61,8 @@
         x += (speed * mod) * Math.cos(Math.PI / 180 * angle);
         y += (speed * mod) * Math.sin(Math.PI / 180 * angle);
 
-        car.left = x;
-        car.top = y;
+        car.style.left = x+"px";
+        car.style.top = y+"px";
     }
 
     </script>
