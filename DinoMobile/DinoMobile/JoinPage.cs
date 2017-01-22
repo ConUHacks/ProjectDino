@@ -141,10 +141,10 @@ namespace DinoMobile
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 HorizontalTextAlignment = TextAlignment.Center,
                 Margin = new Thickness(0, 5, 0, 0)
-            }, 10, 50, 10, 0));
-            panel.Children.Add(new mPadding(accessKeyEntry, 10, 50, 10, 0));
+            }, 10, 15, 10, 0));
+            panel.Children.Add(new mPadding(accessKeyEntry, 10, 15, 10, 0));
             panel.Children.Add(errorLabel);
-            panel.Children.Add(new mPadding(enterButton, 10, 50, 10, 0));
+            panel.Children.Add(new mPadding(enterButton, 10, 15, 10, 0));
 
 
             this.Content = panel;
