@@ -36,8 +36,8 @@
                     };
                 });
 
-                socket.on("state", function(data) {
-                    users[response.id].state[data.state.title] = data.state.state;
+                socket.on("state", function(response) {
+                    users[response.id].state[response.state.title] = response.state.state;
 
                     console.log(users);
                 });
