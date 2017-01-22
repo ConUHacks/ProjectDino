@@ -137,7 +137,7 @@
             socket.on("state", function(input) {
                 if (input.name && inputs[input.name]) {
                     inputs[input.name].setState(input.value, input.index);
-                    host.updateState(this, inputs[input.name]);
+                    host.updateState(this, inputs[input.name].toScheme());
                 }
                 else {
                     // Wrong controller template?
@@ -161,6 +161,7 @@
             return {
                 title: title,
                 type: "button",
+                state: state,
                 x: x,
                 y: y,
             };
@@ -178,6 +179,7 @@
             return {
                 title: title,
                 type: "dpad",
+                state: state,
                 x: x,
                 y: y,
             };
@@ -194,6 +196,7 @@
             return {
                 title: title,
                 type: "analog",
+                state: state,
                 x: x,
                 y: y,
             };
