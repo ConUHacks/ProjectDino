@@ -26,13 +26,13 @@
 
     var x = 40;
     var y = 40;
-    speed = 3;
+    speed = 1;
     angle = 0;
     mod = 1;
 
 
     server.startHost(function(sessionKey) {
-        document.body.innerHTML += "KEY " + sessionKey + "</br>";
+        document.body.innerHTML += "<h1>KEY " + sessionKey + "</h1></br>";
     });
 
     server.onPlayer = function(id) {
@@ -57,8 +57,8 @@
 
     function draw() {
         var car = document.getElementById('car');
-        x += (speed * mod) * Math.cos(Math.PI / 180 * angle);
-        y += (speed * mod) * Math.sin(Math.PI / 180 * angle);
+        x += (speed * mod) * Math.cos(Math.PI / 180 * 2*angle);
+        y += (speed * mod) * Math.sin(Math.PI / 180 * 2*angle);
 
         car.style.left = x+"px";
         car.style.top = y+"px";
