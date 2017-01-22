@@ -14,9 +14,9 @@
                         name: "ConU",
                         key: "CONU_0123456789",
                         template: {
-                            button0: {type: 'button', x: 1, y: 1},
-                            button1: {type: 'button', x: 1, y: 7},
-                            button2: {type: 'button', x: 1, y: 13},
+                            A: {type: 'button', x: 1, y: 1},
+                            B: {type: 'button', x: 1, y: 7},
+                            C: {type: 'button', x: 1, y: 13},
                             label0:  {type: 'label',  x: 10, y: 3, text:'Rock'},
                             label1:  {type: 'label',  x: 10, y: 10, text:'Paper'},
                             label2:  {type: 'label',  x: 10, y: 16, text:'Sissors'},
