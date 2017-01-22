@@ -37,6 +37,8 @@
 
     // Set Rock
     server.onEvent("button0", function(state) {
+        console.log(state);
+
         if (state == 1) {
             players[state.id].choice = 0;
         }
