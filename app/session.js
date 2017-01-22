@@ -200,7 +200,7 @@
         this.toScheme = function() {
             return {
                 title: title,
-                type: "button",
+                type: "CIRCLE",
                 state: state,
                 x: x,
                 y: y,
@@ -218,7 +218,7 @@
         this.toScheme = function() {
             return {
                 title: title,
-                type: "dpad",
+                type: "DPAD",
                 state: state,
                 x: x,
                 y: y,
@@ -251,7 +251,7 @@
         this.toScheme = function() {
             return {
                 title: title,
-                type: "gyro",
+                type: "GYRO",
                 state: state,
             };
         };
@@ -265,7 +265,7 @@
         this.toScheme = function() {
             return {
                 title: title,
-                type: "label",
+                type: "LABEL",
                 text: text,
                 x: x,
                 y: y,

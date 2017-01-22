@@ -21,18 +21,6 @@ namespace DinoMobile
         {
             buildView(controllerObject);
             Dino_API.OnMessage += new EventHandler<JObject>(GetMessage);
-            CrossDeviceMotion.Current.Start(MotionSensorType.Accelerometer);
-            CrossDeviceMotion.Current.SensorValueChanged += (s, a) =>
-            {
-
-                switch (a.SensorType)
-                {
-                    case MotionSensorType.Accelerometer:
-                        Dino_API.log("A: " + ((MotionVector)a.Value).X + " " + ((MotionVector)a.Value).Y + " " + ((MotionVector)a.Value).Z);
-                        break;
-
-                }
-            };
         }
 
         public void GetMessage(object source, object e)
@@ -48,8 +36,8 @@ namespace DinoMobile
         {
             double screenWidth = Application.Current.MainPage.Width;
             double screenHeight = Application.Current.MainPage.Height;
-            double blW = 48;
-            double blH = 27;
+            //double blW = 48;
+            //double blH = 27;
             AbsoluteLayout panel = new AbsoluteLayout();
             panel.BackgroundColor = Color.White;
             Title = "Controller";
@@ -60,14 +48,14 @@ namespace DinoMobile
                 JToken rule = obj.Value;
                 //Dino_API.log("sdfsdf: " +name+ ": x:" + x+ ": y:" + y);
                 string type = rule["type"].ToString();
-                if (type.Equals("button"))
+                if (type.Equals("CIRCLE"))
                 {
-                    double x = (double)rule["x"] * (screenWidth / blW);
-                    double y = (double)rule["y"] * (screenHeight / blH);
+                    double x = (double)rule["x"];// * (screenWidth / blW);
+                    double y = (double)rule["y"];// * (screenHeight / blH);
 
                     Dino_API.log("made button");
                     InputButton btn = new InputButton(75, 75);
-                    btn.Text = name;
+                    //btn.Text = name;
                     btn.Pressed += (sender, e) =>
                     {
                         Dino_API.log("Pressed");
@@ -92,8 +80,8 @@ namespace DinoMobile
                 }
                 else if (type.Equals("dpad"))
                 {
-                    double x = (double)rule["x"] * (screenWidth / blW);
-                    double y = (double)rule["y"] * (screenHeight / blH);
+                    double x = (double)rule["x"];// * (screenWidth / blW);
+                    double y = (double)rule["y"];// * (screenHeight / blH);
 
                     Dino_API.log("made dpad");
                     InputDPad dpad = new InputDPad(150, 150);
@@ -187,10 +175,10 @@ namespace DinoMobile
                     panel.Children.Add(dpad);
                     inputs.Add(name, dpad);
                 }
-                else if (type.Equals("label"))
+                else if (type.Equals("LABEL"))
                 {
-                    double x = (double)rule["x"] * (screenWidth / blW);
-                    double y = (double)rule["y"] * (screenHeight / blH);
+                    double x = (double)rule["x"];// * (screenWidth / blW);
+                    double y = (double)rule["y"];// * (screenHeight / blH);
 
                     Dino_API.log("made label");
                     Label lbl = new Label
@@ -202,8 +190,8 @@ namespace DinoMobile
                     panel.Children.Add(lbl);
                     inputs.Add(name, lbl);
                 }
-                else if (type.Equals("gyro")){
-                    CrossDeviceMotion.Current.Start(MotionSensorType.Accelerometer, (MotionSensorDelay)1000);
+                else if (type.Equals("GYRO")){
+                    CrossDeviceMotion.Current.Start(MotionSensorType.Accelerometer);
                     CrossDeviceMotion.Current.SensorValueChanged += (s, a) =>
                     {
 

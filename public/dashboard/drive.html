@@ -50,6 +50,8 @@
 
     // Set Direction
     server.onEvent("GyroY", function(response) {
+        console.log("FOOO:");
+        console.log(response);
         players[response.id].direction = response.state.state;
         angle += response.state.state;
     });
