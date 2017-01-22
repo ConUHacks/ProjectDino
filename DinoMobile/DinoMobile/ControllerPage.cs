@@ -28,6 +28,18 @@ namespace DinoMobile
             Device.BeginInvokeOnMainThread(() =>
             {
                 JObject data = JObject.Parse(e.ToString());
+                CrossDeviceMotion.Current.Start(MotionSensorType.Accelerometer);
+                CrossDeviceMotion.Current.SensorValueChanged += (s, a) =>
+                {
+
+                    switch (a.SensorType)
+                    {
+                        case MotionSensorType.Accelerometer:
+                            Dino_API.log("A: " + ((MotionVector)a.Value).X + " " + ((MotionVector)a.Value).Y + " " + ((MotionVector)a.Value).Z);
+                            break;
+
+                    }
+                };
                 //deal with data
             });
         }

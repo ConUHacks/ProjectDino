@@ -175,7 +175,9 @@
             host = hostObject;
 
             socket.on("state", function(input) {
+                console.log("OUT!!!!");
                 if (input.name && inputs[input.name]) {
+                    console.log("STATE!!!!");
                     inputs[input.name].setState(input.value, input.index);
                     host.updateState(_, inputs[input.name].toScheme());
                 }
@@ -246,6 +248,7 @@
     function InputGyro(title) {
         var state = 0;
         this.setState = function(value) {
+            console.log("setting state:"+value);
             state = value;
         };
         this.toScheme = function() {
@@ -274,7 +277,7 @@
     }
     var templates = {
         "DRIVE_DEMO" :{
-            GyroY:{type:'gyro'},
+            GyroY:{type:'GYRO'},
             label0:  {type: 'label',  x: 1, y: 1, text:'DRIVING!!'},
         },
         "RPS_DEMO":{
