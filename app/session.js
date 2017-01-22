@@ -135,6 +135,8 @@
             host = hostObject;
 
             socket.on("state", function(input) {
+                console.log(input);
+
                 if (input.name && inputs[input.name]) {
                     inputs[input.name].setState(input.value, input.index);
                     host.updateState(this, inputs[input.name]);
