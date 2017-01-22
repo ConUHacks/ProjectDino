@@ -118,13 +118,13 @@
                 // Maybe move this to a config?
                 switch (input.type) {
                     case 'button':
-                        input[title] = new InputButton(title, input.x, input.y);
+                        inputs[title] = new InputButton(title, input.x, input.y);
                         break;
                     case 'dpad':
-                        input[title] = new InputDPad(title, input.x, input.y);
+                        inputs[title] = new InputDPad(title, input.x, input.y);
                         break;
                     case 'analog':
-                        input[title] = new InputAnalog(title, input.x, input.y);
+                        inputs[title] = new InputAnalog(title, input.x, input.y);
                         break;
                     default:
                         // Undefined input type, ignore for now
