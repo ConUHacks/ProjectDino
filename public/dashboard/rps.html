@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Dashboard</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Dashboard">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+        <!-- Include socket -->
+        <!-- <script src="http://10.217.94.247:3000/socket.io/socket.io.js"></script> -->
+    </head>
+    <body>
+
+    </body>
+    <script src="api.js"></script>
+    <script>
+
+    var server = new DinoAPI("API_KEY");
+    var players = {};
+    var playerCount = 0;
+    var state = 0;
+
+    server.startHost(function(sessionKey) {
+        console.log(sessionKey);
+    });
+
+    server.onPlayer = function(id) {
+        players[id] = {
+            choice: -1, //-1: not chosen, 0: rock, 1: paper, 2: scissors
+            score: 0,
+        };
+
+        ++playerCount;
+    };
+
+    // Set Rock
+    server.onEvent("button0", function(state) {
+        if (state == 1) {
+            players[state.id].choice = 0;
+        }
+    });
+
+    // Set Paper
+    server.onEvent("button1", function(state) {
+        if (state == 1) {
+            players[state.id].choice = 1;
+        }
+    });
+
+    // Set Scissors
+    server.onEvent("button2", function(state) {
+        if (state == 1) {
+            players[state.id].choice = 2;
+        }
+    });
+
+    var winWait, winner = -1;
+    window.setInterval(function() {
+        switch (state) {
+            // Waiting for players
+            case 0:
+                if (playerCount >= 2) {
+                    console.log("Enough players!!!");
+
+                    ++state;
+                }
+                break;
+            // Players making their choice
+            case 1:
+                if (players[0].choice != -1 && players[1].choice != -1) {
+                    ++state;
+                }
+
+                break;
+            // Display winners
+            case 2:
+                /**/ if ((players[0].choice == 0 && players[1].choice == 2) ||
+                         (players[0].choice == 1 && players[1].choice == 0) ||
+                         (players[0].choice == 2 && players[1].choice == 1)) {
+
+                    // player 0 wins
+                    winner = 0;
+                    ++players[0].score;
+                }
+                else if ((players[1].choice == 0 && players[0].choice == 2) ||
+                         (players[1].choice == 1 && players[0].choice == 0) ||
+                         (players[1].choice == 2 && players[0].choice == 1)) {
+
+                    // player 1 wins
+                    winner = 1;
+                    ++players[1].score;
+                }
+                else {
+                    // tie
+                }
+
+                console.log("Winner: " + winner);
+
+                winWait = new Date();
+                ++state;
+
+                break;
+            // Cleanup restart
+            case 3:
+                if (winWait > 1000) {
+                    players[0].choice = -1;
+                    players[1].choice = -1;
+                    winner = -1;
+                    state = 1;
+                }
+                else {
+                    // draw results
+                }
+                break;
+            default:
+                state = 0;
+                break;
+        }
+    });
+
+    </script>
+</html>
