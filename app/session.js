@@ -100,6 +100,7 @@
     }
 
     function User(socket, details) {
+        var _ = this;
         var host;
         var inputs = {};
 
@@ -137,7 +138,7 @@
             socket.on("state", function(input) {
                 if (input.name && inputs[input.name]) {
                     inputs[input.name].setState(input.value, input.index);
-                    host.updateState(this, inputs[input.name].toScheme());
+                    host.updateState(_, inputs[input.name].toScheme());
                 }
                 else {
                     // Wrong controller template?
