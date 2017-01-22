@@ -175,11 +175,7 @@
             host = hostObject;
 
             socket.on("state", function(input) {
-                console.log("out:");
-                console.log(input);
-                console.log(inputs);
                 if (input.name && inputs[input.name]) {
-                    console.log("STATE!!!!");
                     inputs[input.name].setState(input.value, input.index);
                     host.updateState(_, inputs[input.name].toScheme());
                 }
