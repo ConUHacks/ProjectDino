@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Project Dino</title>
+
+  </head>
+  <body>
+    <div id="divcontainer">
+
+      <div id="wrap1">
+        <img id="object1" src="Assets/circle.png" alt="CIRCLE">
+        <div id="text_over_image1"><h6></h6>A</div>
+      </div>
+      <div id="wrap2">
+        <img id="object2" src="Assets/circle.png" alt="CIRCLE">
+        <div id="text_over_image2"><h6></h6>B</div>
+      </div>
+      <div id="wrap3">
+        <img id="object3" src="Assets/circle.png" alt="CIRCLE">
+        <div id="text_over_image3"><h6></h6>C</div>
+      </div>
+      <div id="wrap4">
+        <img id="object4" src="Assets/circle.png" alt="CIRCLE">
+        <div id="text_over_image4"><h6></h6>D</div>
+      </div>
+      <div id="wrap5">
+        <img id="object5" src="Assets/circle.png" alt="CIRCLE">
+        <div id="text_over_image5"><h6></h6>E</div>
+      </div>
+      <div id="wrap6">
+        <img id="object6" src="Assets/circle.png" alt="CIRCLE">
+        <div id="text_over_image6"><h6></h6>F</div>
+      </div>
+      <div id="wrap7">
+        <img id="object7" src="Assets/circle.png" alt="CIRCLE">
+        <div id="text_over_image7"><h6></h6>G</div>
+      </div>
+      <div id="wrap8">
+        <img id="object8" src="Assets/circle.png" alt="CIRCLE">
+        <div id="text_over_image8"><h6></h6>H</div>
+      </div>
+      <div id="wrap9">
+        <img id="object9" src="Assets/circle.png" alt="CIRCLE">
+        <div id="text_over_image9"><h6></h6>I</div>
+      </div>
+      <div id="wrap10">
+        <img id="object10" src="Assets/circle.png" alt="CIRCLE">
+        <div id="text_over_image10"><h6></h6>J</div>
+      </div>
+      <div id="wrap11">
+        <img id="object11" src="Assets/dPad.png" alt="DPAD">
+        <div id="text_over_image11"><h6></h6></div>
+      </div>
+      <div id="wrap12">
+        <img id="object12" src="Assets/dPad.png" alt="DPAD">
+        <div id="text_over_image12"><h6></h6></div>
+      </div>
+      <div id="wrap13">
+        <img id="object13" src="Assets/dPad.png" alt="DPAD">
+        <div id="text_over_image13"><h6></h6></div>
+      </div>
+    </div>
+
+
+
+    <p>Add/Remove buttons:</p>
+    <button onclick="myFunction1()">A Button</button>
+    <button onclick="myFunction2()">B Button</button>
+    <button onclick="myFunction3()">C Button</button>
+    <button onclick="myFunction4()">D Button</button>
+    <button onclick="myFunction5()">E Button</button>
+    <button onclick="myFunction6()">F Button</button>
+    <button onclick="myFunction7()">G Button</button>
+    <button onclick="myFunction8()">H Button</button>
+    <button onclick="myFunction9()">I Button</button>
+    <button onclick="myFunction10()">J Button</button>
+    <button onclick="myFunction11()">DPAD 1</button>
+    <button onclick="myFunction12()">DPAD 2</button>
+    <button onclick="myFunction13()">DPAD 3</button></br>
+    <button onclick="save()">SAVE</button>
+
+    </body>
+
+    <script>
+    function save() {
+        var container = document.getElementById("divcontainer");
+        var result = {};
+
+        for (var i = 0; i < container.children.length; ++i) {
+            var input = container.children[i];
+
+            console.log();
+
+            // Check to see which ones aren't hidden
+            if (input.style.display != "none") {
+                result[input.children[0].id] =
+                {
+                    type: input.children[0].alt,
+                    x: input.offsetLeft - input.parentElement.offsetLeft,
+                    y: input.offsetTop - input.parentElement.offsetTop,
+                };
+            }
+
+            $.ajax({
+              url: 'http://ec2-54-147-250-149.compute-1.amazonaws.com:3000/saveController',    //Your api url
+              contentType:"text/plain",
+              type: 'PUT',   //type is any HTTP method
+              success: function(data) {
+                alert('Load was performed.');
+              },
+              data:JSON.stringify(result),
+            });
+
+
+        }
+
+        console.log(result);
+    }
+
+    function myFunction1() {
+        var x = document.getElementById('wrap1');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+
+    }
+
+    function myFunction2() {
+        var x = document.getElementById('wrap2');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+
+    }
+
+    function myFunction3() {
+        var x = document.getElementById('wrap3');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+
+    }
+
+    function myFunction4() {
+        var x = document.getElementById('wrap4');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+
+    }
+
+    function myFunction5() {
+        var x = document.getElementById('wrap5');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+
+    }
+
+    function myFunction6() {
+        var x = document.getElementById('wrap6');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+
+    }
+
+    function myFunction7() {
+        var x = document.getElementById('wrap7');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+
+    }
+    function myFunction8() {
+        var x = document.getElementById('wrap8');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+
+    }
+    function myFunction9() {
+        var x = document.getElementById('wrap9');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+
+    }
+    function myFunction10() {
+        var x = document.getElementById('wrap10');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+
+    }
+    function myFunction11() {
+        var x = document.getElementById('wrap11');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+
+    }
+    function myFunction12() {
+        var x = document.getElementById('wrap12');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+
+    }
+    function myFunction13() {
+        var x = document.getElementById('wrap13');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+
+    }
+
+    window.onload = myFunction2();
+    window.onload = myFunction3();
+    window.onload = myFunction4();
+    window.onload = myFunction5();
+    window.onload = myFunction6();
+    window.onload = myFunction7();
+    window.onload = myFunction8();
+    window.onload = myFunction9();
+    window.onload = myFunction10();
+    window.onload = myFunction11();
+    window.onload = myFunction12();
+    window.onload = myFunction13();
+  </script>
+  <!-- A button -->
+</html>
