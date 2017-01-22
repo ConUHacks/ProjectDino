@@ -24,7 +24,7 @@
 
     _.search = function(params) {
         var collection = database.collection('Controllers');
-        var documents = database.collection("{$text: {$search: " + params["serviceName"] + "}}");
+        var documents = database.collection.find("{\"serviceName\": \"" + params["serviceName"] + "\"}");
         database.close();
         return documents;
     }
