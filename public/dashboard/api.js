@@ -16,6 +16,8 @@ var DinoAPI = function(apiKey) {
         });
 
         socket.on("ready", function(response) {
+            console.log(response);
+
             users[response.id] = {
                 state: {},
             };
