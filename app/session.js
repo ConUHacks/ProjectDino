@@ -136,7 +136,7 @@
 
             socket.on("state", function(input) {
                 console.log(input);
-                console.log(inputs[input.name]);
+                console.log(inputs);
 
                 if (input.name && inputs[input.name]) {
                     inputs[input.name].setState(input.value, input.index);
