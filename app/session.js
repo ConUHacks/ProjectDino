@@ -15,8 +15,11 @@
                         key: "CONU_0123456789",
                         template: {
                             button0: {type: 'button', x: 1, y: 1},
-                            button1: {type: 'button', x: 1, y: 10},
-                            button2: {type: 'button', x: 1, y: 20},
+                            button1: {type: 'button', x: 1, y: 7},
+                            button2: {type: 'button', x: 1, y: 13},
+                            label0:  {type: 'label',  x: 7, y: 1, text:'Rock'},
+                            label0:  {type: 'label',  x: 7, y: 7, text:'Paper'},
+                            label0:  {type: 'label',  x: 7, y: 13, text:'Sissors'},
                             /*dpad:   {type: 'dpad', x: 25, y: 25},
                             analog: {type: 'analog', x: 40, y: 15},*/
                         },
