@@ -28,30 +28,20 @@
             direction: 0, //-1: left, 0: straight, 1: right
             drawn: false,
         };
+        var input = document.createElement("input");
+        input.type = "text";
+        input.id = "direction-"+i;
+        document.body.appendChild(input);
 
         ++playerCount;
     };
 
     // Set Direction
-    server.onEvent("Gyro0", function(response) {
+    server.onEvent("GyroY", function(response) {
         console.log("message");
         console.log(response);
         players[response.id].direction = response.state.state;
-    });
-
-    window.setInterval(function() {
-        for (var i = 0; i < players.length; i++) {
-            if(!players[i].drawn){
-                //draw input
-                var input = document.createElement("input");
-                input.type = "text";
-                input.id = "direction-"+i;
-                document.body.appendChild(input);
-            }else{
-                var input = document.getElementById('direction-'+i);
-                input.value = players[i].direction;
-            }
-        }
+        document.getElementById('direction-'+i).value = response.state.state;
     });
 
     </script>
