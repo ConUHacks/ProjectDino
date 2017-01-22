@@ -24,13 +24,11 @@
 
 
 
-    x = 40;
-    y = 40;
+    var x = 40;
+    var y = 40;
     speed = 3;
     angle = 0;
     mod = 1;
-
-    car = document.getElementById('car');
 
 
     server.startHost(function(sessionKey) {
@@ -58,6 +56,7 @@
 
 
     function draw() {
+        var car = document.getElementById('car');
         x += (speed * mod) * Math.cos(Math.PI / 180 * angle);
         y += (speed * mod) * Math.sin(Math.PI / 180 * angle);
 
