@@ -14,20 +14,33 @@
 
     </body>
     <script>
-        var DinoAPI;
-        (function(_) {
+        var DinoAPI = function(apiKey) {
             //"ws://ec2-54-147-250-149.compute-1.amazonaws.com:3000/"
             var socket = io();
+            var sessionKey = undefined;
+            var users = [];
 
-            socket.emit("identity", {
-                type: "host",
-                apiKey: "123345",
-            });
+            this.startHost = function(callback) {
+                socket.emit("identity", {
+                    type: "host",
+                    apiKey: apiKey,
+                });
 
-            socket.on("identity", function(response) {
-                console.log(response);
-            });
-        })
-        (DinoAPI || (DinoAPI = {}));
+                socket.on("identity", function(response) {
+                    sessionKey = response.key;
+                    callback(response.key);
+                });
+
+                socket.on("ready", function(response) {
+                    users[response.id] = {
+                        state: undefined,
+                    };
+                });
+            };
+
+            this.getSessionKey = function() {
+                return sessionKey;
+            };
+        };
     </script>
 </html>

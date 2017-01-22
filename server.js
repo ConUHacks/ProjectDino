@@ -43,7 +43,7 @@ app.post("/validate", function(req, res, next) {
 
     var correct = dashboard.validate(req.body);
     if (!correct) {
-        res.json(message: "Incorrect Password");
+        res.json({message: "Incorrect Password"});
     }
     // Return the json datatype
     res.status(500).json({error: "There was an error."})

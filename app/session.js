@@ -107,6 +107,8 @@
 
         this.ready = false;
         this.init = function(template, hostObject) {
+            socket.emit("template", template);
+
             for (var i = 0, keys = Object.keys(template); i < keys.length; ++i) {
                 var title = keys[i];
                 var input = template[title];
