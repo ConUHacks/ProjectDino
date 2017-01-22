@@ -156,26 +156,27 @@
                   isLabel = true;
                 }
 
-                if(!isLabel){
-                result[input.children[0].id] =
-                {
-                    type: input.children[0].alt,
-                    x: input.offsetLeft - input.parentElement.offsetLeft,
-                    y: input.offsetTop - input.parentElement.offsetTop,
-                    //controller: controller
-                };
-              } else if(label.innerHTML != ""){
-                result[input.children[0].id] =
-                {
-                    type: "LABEL",//input.children[0].alt,
-                    x: input.offsetLeft - input.parentElement.offsetLeft,
-                    y: input.offsetTop - input.parentElement.offsetTop,
-                    text: label.innerHTML,
-                    //controller: controller
-                };
+                if (!isLabel) {
+                    result[input.children[0].id] =
+                    {
+                        type: input.children[0].alt,
+                        x: input.offsetLeft - input.parentElement.offsetLeft,
+                        y: input.offsetTop - input.parentElement.offsetTop,
+                        //controller: controller
+                    };
+                } else if (label.innerHTML != "") {
+                    result[input.children[0].id] =
+                    {
+                        type: "LABEL",//input.children[0].alt,
+                        x: input.offsetLeft - input.parentElement.offsetLeft,
+                        y: input.offsetTop - input.parentElement.offsetTop,
+                        text: label.innerHTML,
+                        //controller: controller
+                    };
+
+                    //console.log(result[input.children[0].id]);
                 }
             }
-
         }
         var newResult = {};
         newResult.template = result;
