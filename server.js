@@ -14,7 +14,7 @@ app.put("/saveController", function(req, res, next) {
     // req = request;
     // res = response;
     // next = next function in chain
-
+    console.log("hello");
     dashboard.saveController(req.body);
     // Return the json datatype
     res.status(500).json({error: "There was an error."})
