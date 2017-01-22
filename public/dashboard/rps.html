@@ -21,7 +21,7 @@
     var state = 0;
 
     server.startHost(function(sessionKey) {
-        document.body.innerHTML += "KEY " + sessionKey + "</br>";
+        document.body.innerHTML += "<h1>KEY " + sessionKey + "</h1></br>";
     });
 
     server.onPlayer = function(id) {

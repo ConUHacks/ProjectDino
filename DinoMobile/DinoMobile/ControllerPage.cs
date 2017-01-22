@@ -48,8 +48,8 @@ namespace DinoMobile
         {
             double screenWidth = Application.Current.MainPage.Width;
             double screenHeight = Application.Current.MainPage.Height;
-            double blW = 27;
-            double blH = 48;
+            double blW = 48;
+            double blH = 27;
             AbsoluteLayout panel = new AbsoluteLayout();
             panel.BackgroundColor = Color.White;
             Title = "Controller";
