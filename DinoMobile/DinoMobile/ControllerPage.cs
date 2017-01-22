@@ -58,12 +58,13 @@ namespace DinoMobile
             {
                 string name = obj.Key;
                 JToken rule = obj.Value;
-                double x = (double)rule["x"] * (screenWidth / blW);
-                double y = (double)rule["y"] * (screenHeight / blH);
-                Dino_API.log("sdfsdf: " +name+ ": x:" + x+ ": y:" + y);
+                //Dino_API.log("sdfsdf: " +name+ ": x:" + x+ ": y:" + y);
                 string type = rule["type"].ToString();
                 if (type.Equals("button"))
                 {
+                    double x = (double)rule["x"] * (screenWidth / blW);
+                    double y = (double)rule["y"] * (screenHeight / blH);
+
                     Dino_API.log("made button");
                     InputButton btn = new InputButton(75, 75);
                     btn.Text = name;
@@ -91,6 +92,9 @@ namespace DinoMobile
                 }
                 else if (type.Equals("dpad"))
                 {
+                    double x = (double)rule["x"] * (screenWidth / blW);
+                    double y = (double)rule["y"] * (screenHeight / blH);
+
                     Dino_API.log("made dpad");
                     InputDPad dpad = new InputDPad(150, 150);
 
@@ -185,6 +189,9 @@ namespace DinoMobile
                 }
                 else if (type.Equals("label"))
                 {
+                    double x = (double)rule["x"] * (screenWidth / blW);
+                    double y = (double)rule["y"] * (screenHeight / blH);
+
                     Dino_API.log("made label");
                     Label lbl = new Label
                     {

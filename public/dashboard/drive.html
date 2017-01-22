@@ -34,6 +34,8 @@
 
     // Set Direction
     server.onEvent("Gyro0", function(response) {
+        console.log("message");
+        console.log(response);
         players[response.id].direction = response.state.state;
     });
 

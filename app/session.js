@@ -216,6 +216,9 @@
 
     function InputGyro(title) {
         var state = 0;
+        this.setState = function(value) {
+            state = value;
+        };
         this.toScheme = function() {
             return {
                 title: title,
@@ -225,7 +228,11 @@
         };
     }
 
-    function OutputLabel(title, text, x, y) {
+    function OutputLabel(title, _text, x, y) {
+        var text = _text
+        this.setState = function(value) {
+            text = value;
+        };
         this.toScheme = function() {
             return {
                 title: title,
