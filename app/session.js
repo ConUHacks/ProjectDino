@@ -14,7 +14,7 @@
                     var details = {
                         name: "ConU",
                         key: "CONU_0123456789",
-                        template: templates[apiKey],
+                        template: templates[data.apiKey],
                         userLimit: 4,
                     };
 
