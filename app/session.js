@@ -2,7 +2,7 @@
 (function(_) {
     var hosts = [];
 
-    console.log("Listening for Sessions on 3000");
+    console.log("Listening for Sessions");
 
     _.connection = function(socket) {
         socket.on("identity", function(data) {
@@ -22,26 +22,44 @@
                         userLimit: 4,
                     };
 
-                    hosts.push(new Host(socket, details));
+                    var host = new Host(socket, details);
+                    hosts.push(host);
+
+                    socket.emit("identity", {
+                        success: "true",
+                        key: host.sessionKey,
+                    });
                 }
                 else if (data.type.toLowerCase() == "user") {
+                    var success = false;
+
                     // Search hosts for matching session key
                     for (var i = 0; i < hosts.length; ++i) {
                         var host = hosts[i];
 
                         if (host.sessionKey == data.sessionKey) {
                             host.addUser(new User(socket, data));
+                            success = true;
                         }
+                    }
+
+                    if (success) {
+                        socket.emit("identity", { success: "true", });
+                    }
+                    else {
+                        socket.emit("identity", { error: "No matching session keys", });
                     }
                 }
                 else {
                     // Undefined identity object
-                    console.log("Undefined identity attempt");
+                    console.log("Undefined identity attempt on type");
+                    socket.emit("identity", { error: "Undefined identity attempt", });
                 }
             }
             else {
                 // Undefined identity object
-                console.log("Undefined identity attempt");
+                console.log("Undefined identity attempt on data");
+                socket.emit("identity", { error: "Undefined identity attempt", });
             }
         });
     };
@@ -51,6 +69,12 @@
      */
     function Host(socket, details) {
         var users = [];
+
+        socket.on('disconnect', function() {
+            var index = hosts.indexOf(this);
+            if (index != -1)
+                hosts.splice(index, 1);
+        });
 
         this.addUser = function(user) {
             if (users.length <= (details.userLimit || Number.POSITIVE_INFINITY)) {
@@ -76,6 +100,10 @@
     function User(socket, details) {
         var host;
         var inputs = {};
+
+        socket.on('disconnect', function() {
+            // todo remove from game
+        });
 
         this.ready = false;
         this.init = function(template, hostObject) {

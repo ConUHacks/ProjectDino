@@ -58,7 +58,10 @@ app.post("/validate", function(req, res, next) {
  */
 
 var session = require('./app/session.js')
-listener.sockets.on('connection', function(socket) {
+io.on('connection', function(socket) {
     // Begin handling connections
     session.connection(socket);
 });
+app.use("/", express.static("public/dashboard/"));
+
+server.listen(3000, function() {});

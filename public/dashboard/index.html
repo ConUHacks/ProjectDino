@@ -6,10 +6,28 @@
         <meta name="description" content="Dashboard">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
+        <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
         <!-- Include socket -->
         <!-- <script src="http://10.217.94.247:3000/socket.io/socket.io.js"></script> -->
     </head>
     <body>
 
     </body>
+    <script>
+        var DinoAPI;
+        (function(_) {
+            //"ws://ec2-54-147-250-149.compute-1.amazonaws.com:3000/"
+            var socket = io();
+
+            socket.emit("identity", {
+                type: "host",
+                apiKey: "123345",
+            });
+
+            socket.on("identity", function(response) {
+                console.log(response);
+            });
+        })
+        (DinoAPI || (DinoAPI = {}));
+    </script>
 </html>
