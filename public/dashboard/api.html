@@ -32,12 +32,14 @@
 
                 socket.on("ready", function(response) {
                     users[response.id] = {
-                        state: undefined,
+                        state: {},
                     };
                 });
 
                 socket.on("state", function(data) {
-                    console.log(data);
+                    users[response.id].state[data.state.title] = data.state.state;
+
+                    console.log(users);
                 });
             };
 
