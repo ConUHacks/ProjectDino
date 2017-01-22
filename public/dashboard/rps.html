@@ -35,21 +35,21 @@
 
     // Set Rock
     server.onEvent("button0", function(response) {
-        if (state == 1 && response.state.value) {
+        if (state == 1 && response.state.state) {
             players[response.id].choice = 0;
         }
     });
 
     // Set Paper
     server.onEvent("button1", function(response) {
-        if (state == 1 && response.state.value) {
+        if (state == 1 && response.state.state) {
             players[response.id].choice = 1;
         }
     });
 
     // Set Scissors
     server.onEvent("button2", function(response) {
-        if (state == 1 && response.state.value) {
+        if (state == 1 && response.state.state) {
             players[response.id].choice = 2;
         }
     });
