@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Paths>
+  <Jars></Jars>
+  <ResolvedResourceDirectories>
+    <ResolvedResourceDirectory>/Users/lucas/Projects/ProjectDino/DinoMobile/Droid/obj/Debug/__library_projects__/Xamarin.Forms.Platform.Android/library_project_imports/res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>/Users/lucas/Projects/ProjectDino/DinoMobile/Droid/obj/Debug/__library_projects__/Xamarin.Forms.Platform/library_project_imports/res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>/Users/lucas/Projects/ProjectDino/DinoMobile/Droid/obj/Debug/__library_projects__/WebSocket4Net/library_project_imports/res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>/Users/lucas/Projects/ProjectDino/DinoMobile/Droid/obj/Debug/__library_projects__/EngineIoClientDotNet/library_project_imports/res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>/Users/lucas/Projects/ProjectDino/DinoMobile/Droid/obj/Debug/__library_projects__/SocketIoClientDotNet/library_project_imports/res</ResolvedResourceDirectory>
+  </ResolvedResourceDirectories>
+  <ResolvedAssetDirectories>
+    <ResolvedAssetDirectory>obj/Debug/__library_projects__/Xamarin.Forms.Platform.Android/library_project_imports/assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj/Debug/__library_projects__/Xamarin.Forms.Platform/library_project_imports/assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj/Debug/__library_projects__/WebSocket4Net/library_project_imports/assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj/Debug/__library_projects__/EngineIoClientDotNet/library_project_imports/assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj/Debug/__library_projects__/SocketIoClientDotNet/library_project_imports/assets</ResolvedAssetDirectory>
+  </ResolvedAssetDirectories>
+  <ResolvedEnvironmentFiles />
+  <ResolvedResourceDirectoryStamps>
+    <ResolvedResourceDirectoryStamp>/Users/lucas/Projects/ProjectDino/DinoMobile/Droid/obj/Debug/__library_projects__/Xamarin.Forms.Platform.Android.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>/Users/lucas/Projects/ProjectDino/DinoMobile/Droid/obj/Debug/__library_projects__/Xamarin.Forms.Platform.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>/Users/lucas/Projects/ProjectDino/DinoMobile/Droid/obj/Debug/__library_projects__/WebSocket4Net.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>/Users/lucas/Projects/ProjectDino/DinoMobile/Droid/obj/Debug/__library_projects__/EngineIoClientDotNet.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>/Users/lucas/Projects/ProjectDino/DinoMobile/Droid/obj/Debug/__library_projects__/SocketIoClientDotNet.stamp</ResolvedResourceDirectoryStamp>
+  </ResolvedResourceDirectoryStamps>
+</Paths>
