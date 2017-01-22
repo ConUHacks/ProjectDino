@@ -11,7 +11,7 @@
     </head>
     <body>
         <div id="chosen"></div>
-        <canvas id="canvas" width="400" height="400" style="border: 2px solid #333;"></canvas>
+        <canvas id="canvas" width="400" height="400"></canvas>
     </body>
     <script src="api.js"></script>
     <script>
@@ -66,9 +66,6 @@
         context = canvas.getContext("2d");
         context.clearRect(0, 0, 400, 400);
 
-        context.fillStyle = "rgb(200, 100, 220)";
-        context.fillRect(50, 50, 100, 100);
-
         x += (speed * mod) * Math.cos(Math.PI / 180 * angle);
         y += (speed * mod) * Math.sin(Math.PI / 180 * angle);
 
@@ -77,6 +74,7 @@
         context.rotate(Math.PI / 180 * angle);
         context.drawImage(car, -(car.width / 2), -(car.height / 2));
         context.restore();
+        console.log(x+"   d  "+y);
     }
 
     </script>
