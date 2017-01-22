@@ -52,7 +52,14 @@ app.post("/validate", function(req, res, next) {
     });
 });
 
+app.post("/search", function(req, res, next) {
+    var documents = dashboard.search(req.body);
 
+    res.status(500).json({error: "There was an error."})
+    res.status(200).json({
+        success: documents
+    });
+});
 /**
  * SERVER SESSIONS
  */

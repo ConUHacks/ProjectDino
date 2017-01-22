@@ -22,6 +22,13 @@
         database.close();
     }
 
+    _.search = function(params) {
+        var collection = database.collection('Controllers');
+        var documents = database.collection("{$text: {$search: " + params["serviceName"] + "}}");
+        database.close();
+        return documents;
+    }
+
     _.createOrg = function(params) {
         var collection = database.collection('Orgs');
         collection.insertOne(params["creds"]);
