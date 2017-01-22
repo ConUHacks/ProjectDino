@@ -5,9 +5,9 @@
     console.log("Listening for Sessions");
 
     _.connection = function(socket) {
-        console.log("Connected 1");
-
         socket.on("identity", function(data) {
+            console.log(data);
+
             if (data && data.type) {
                 if (data.type.toLowerCase() == "host") {
                     // TODO Verify API key and grab data
@@ -24,8 +24,13 @@
                         userLimit: 4,
                     };
 
-                    hosts.push(new Host(socket, details));
-                    socket.emit("identity", { success: "true", });
+                    var host = new Host(socket, details);
+                    hosts.push(host);
+
+                    socket.emit("identity", {
+                        success: "true",
+                        key: host.sessionKey,
+                    });
                 }
                 else if (data.type.toLowerCase() == "user") {
                     var success = false;
@@ -49,13 +54,13 @@
                 }
                 else {
                     // Undefined identity object
-                    console.log("Undefined identity attempt");
+                    console.log("Undefined identity attempt on type");
                     socket.emit("identity", { error: "Undefined identity attempt", });
                 }
             }
             else {
                 // Undefined identity object
-                console.log("Undefined identity attempt");
+                console.log("Undefined identity attempt on data");
                 socket.emit("identity", { error: "Undefined identity attempt", });
             }
         });
@@ -66,6 +71,12 @@
      */
     function Host(socket, details) {
         var users = [];
+
+        socket.on('disconnect', function() {
+            var index = hosts.indexOf(this);
+            if (index != -1)
+                hosts.splice(index, 1);
+        });
 
         this.addUser = function(user) {
             if (users.length <= (details.userLimit || Number.POSITIVE_INFINITY)) {
@@ -91,6 +102,10 @@
     function User(socket, details) {
         var host;
         var inputs = {};
+
+        socket.on('disconnect', function() {
+            // todo remove from game
+        });
 
         this.ready = false;
         this.init = function(template, hostObject) {

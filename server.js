@@ -6,8 +6,6 @@ var io = require('socket.io')(server);
 
 var session = require('./app/session.js')
 io.on('connection', function(socket) {
-    console.log("Connection 0");
-
     // Begin handling connections
     session.connection(socket);
 });
