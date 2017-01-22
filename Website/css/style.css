@@ -1,0 +1,37 @@
+#divcontainer{
+  border: 1px solid lightgray;
+  width: 480px;
+  height: 270px;
+  margin: 0;
+  display:flex;
+}
+#object1,#object2,#object3,#object4,#object5,#object6,#object7,#object8,#object9,#object10,#object11,#object12,#object13{
+  width: 75px;
+  height: 75px;
+  margin: 0px;
+  cursor: move;
+
+}
+#object11,#object12,#object13{
+  width: 100px;
+  height: 100px;
+  margin: 0px;
+  cursor: move;
+}
+#wrap1,#wrap2,#wrap3,#wrap4,#wrap5,#wrap6,#wrap7,#wrap8,#wrap9,#wrap10,#wrap11,#wrap12,#wrap13{
+  height: 70px;
+  text-align:center;
+  position:relative;
+  cursor: move;
+  position: absolute;
+
+}
+#text_over_image1,#text_over_image2,#text_over_image3,#text_over_image4,#text_over_image5,#text_over_image6,#text_over_image7,#text_over_image8,#text_over_image9,#text_over_image10 {
+position: absolute;
+margin: auto;
+    top: 0;
+    left:0;
+    right:0;
+    bottom:0;
+
+}
