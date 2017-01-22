@@ -1,4 +1,5 @@
 var DinoAPI = function(apiKey) {
+    var _ = this;
     var socket = io("ws://ec2-54-147-250-149.compute-1.amazonaws.com:3000/");
     var sessionKey = undefined;
     var users = [];
@@ -22,8 +23,8 @@ var DinoAPI = function(apiKey) {
                 state: {},
             };
 
-            if (this.onPlayer) {
-                this.onPlayer(response.id);
+            if (_.onPlayer) {
+                _.onPlayer(response.id);
             }
         });
 
