@@ -149,6 +149,9 @@
             }
 
         }
+        var newResult = {};
+        newResult["details"] = result;
+        console.log(JSON.stringify(newResult));
 
         $.ajax({
           url: 'http://ec2-54-147-250-149.compute-1.amazonaws.com:3000/saveController',    //Your api url
@@ -157,10 +160,8 @@
           success: function(data) {
             alert('Load was performed.');
           },
-          data:JSON.stringify(result)
+          data:JSON.stringify(newResult)
         });
-        console.log(JSON.stringify(result));
-        console.log(result);
     }
 
     function myFunction1() {
