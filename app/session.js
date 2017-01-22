@@ -47,6 +47,8 @@
                                 userLimit: 100,
                             };
 
+                            console.log(result.template);
+
                             /*if (details.template == null){
                                 console.log("Undefined identity attempt on data");
                                 socket.emit("identity", { error: "Undefined identity attempt", });
