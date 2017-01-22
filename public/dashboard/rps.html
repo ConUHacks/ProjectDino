@@ -24,8 +24,8 @@
         console.log(sessionKey);
     });
 
-    server.onPlayer = function(id) {
-        players[id] = {
+    server.onPlayer = function(response) {
+        players[response.id] = {
             choice: -1, //-1: not chosen, 0: rock, 1: paper, 2: scissors
             score: 0,
         };
