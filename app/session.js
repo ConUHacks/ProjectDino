@@ -14,9 +14,9 @@
                         name: "ConU",
                         key: "CONU_0123456789",
                         template: {
-                            button: {type: 'button', x: 1, y: 3},
-                            button: {type: 'button', x: 4, y: 9},
-                            button: {type: 'button', x: 10, y: 10},
+                            button0: {type: 'button', x: 1, y: 3},
+                            button1: {type: 'button', x: 4, y: 9},
+                            button2: {type: 'button', x: 10, y: 10},
                             dpad:   {type: 'dpad', x: 25, y: 25},
                             analog: {type: 'analog', x: 40, y: 15},
                         },
