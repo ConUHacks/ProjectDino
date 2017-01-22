@@ -59,7 +59,7 @@
         console.log("message");
         console.log(response);
         players[response.id].direction = response.state.state;
-        document.getElementById('direction-'+i).value = response.state.state;
+        document.getElementById('direction-'+response.id).value = response.state.state;
         angle += response.state.state;
     });
 
