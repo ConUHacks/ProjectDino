@@ -188,7 +188,7 @@ namespace DinoMobile
                     Dino_API.log("made label");
                     Label lbl = new Label
                     {
-                        Text = "lbl",
+                        Text = (string)rule["text"],
                         FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label))
                     };
                     AbsoluteLayout.SetLayoutBounds(lbl, new Rectangle(x, y, lbl.Width, lbl.Height));

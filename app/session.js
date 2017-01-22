@@ -14,11 +14,11 @@
                         name: "ConU",
                         key: "CONU_0123456789",
                         template: {
-                            button0: {type: 'button', x: 1, y: 3},
-                            button1: {type: 'button', x: 4, y: 9},
-                            button2: {type: 'button', x: 10, y: 10},
-                            dpad:   {type: 'dpad', x: 25, y: 25},
-                            analog: {type: 'analog', x: 40, y: 15},
+                            button0: {type: 'button', x: 1, y: 1},
+                            button1: {type: 'button', x: 1, y: 10},
+                            button2: {type: 'button', x: 1, y: 20},
+                            /*dpad:   {type: 'dpad', x: 25, y: 25},
+                            analog: {type: 'analog', x: 40, y: 15},*/
                         },
                         // optional user limit
                         userLimit: 4,
@@ -127,6 +127,9 @@
                     case 'analog':
                         inputs[title] = new InputAnalog(title, input.x, input.y);
                         break;
+                    case 'label':
+                        inputs[title] = new OutputLabel(title, input.text, input.x, input.y);
+                        break;
                     default:
                         // Undefined input type, ignore for now
                         break;
@@ -198,6 +201,18 @@
                 title: title,
                 type: "analog",
                 state: state,
+                x: x,
+                y: y,
+            };
+        };
+    }
+
+    function OutputLabel(title, text, x, y) {
+        this.toScheme = function() {
+            return {
+                title: title,
+                type: "label",
+                text: text,
                 x: x,
                 y: y,
             };
