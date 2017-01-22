@@ -17,9 +17,9 @@
                             button0: {type: 'button', x: 1, y: 1},
                             button1: {type: 'button', x: 1, y: 7},
                             button2: {type: 'button', x: 1, y: 13},
-                            label0:  {type: 'label',  x: 7, y: 1, text:'Rock'},
-                            label0:  {type: 'label',  x: 7, y: 7, text:'Paper'},
-                            label0:  {type: 'label',  x: 7, y: 13, text:'Sissors'},
+                            label0:  {type: 'label',  x: 10, y: 3, text:'Rock'},
+                            label1:  {type: 'label',  x: 10, y: 10, text:'Paper'},
+                            label2:  {type: 'label',  x: 10, y: 16, text:'Sissors'},
                             /*dpad:   {type: 'dpad', x: 25, y: 25},
                             analog: {type: 'analog', x: 40, y: 15},*/
                         },
