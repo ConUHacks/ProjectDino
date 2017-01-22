@@ -54,17 +54,36 @@
       </div>
       <div id="wrap11">
         <img id="object11" src="Assets/dPad.png" alt="DPAD">
-        <div id="text_over_image11"><h6></h6></div>
+
       </div>
       <div id="wrap12">
         <img id="object12" src="Assets/dPad.png" alt="DPAD">
-        <div id="text_over_image12"><h6></h6></div>
+
       </div>
       <div id="wrap13">
         <img id="object13" src="Assets/dPad.png" alt="DPAD">
-        <div id="text_over_image13"><h6></h6></div>
+      </div>
+
+      <div id="wrap14">
+        <h1 id="message1"></h1>
+      </div>
+      <div id="wrap15">
+        <h1 id="message2"></h1>
+      </div>
+      <div id="wrap16">
+        <h1 id="message3"></h1>
+      </div>
+      <div id="wrap17">
+        <h1 id="message4"></h1>
+      </div>
+      <div id="wrap18">
+        <h1 id="message5"></h1>
       </div>
     </div>
+
+
+
+
 
 
 
@@ -78,10 +97,18 @@
     <button onclick="myFunction7()">G Button</button>
     <button onclick="myFunction8()">H Button</button>
     <button onclick="myFunction9()">I Button</button>
-    <button onclick="myFunction10()">J Button</button>
+    <button onclick="myFunction10()">J Button</button></br>
+    <p>DPAD</p>
     <button onclick="myFunction11()">DPAD 1</button>
     <button onclick="myFunction12()">DPAD 2</button>
     <button onclick="myFunction13()">DPAD 3</button></br>
+    <p>Text</p>
+    <label>Enter Label:</label><input id="name1" type ="text"/><br/>
+    <label>Enter Label:</label><input id="name2" type ="text"/><br/>
+    <label>Enter Label:</label><input id="name3" type ="text"/><br/>
+    <label>Enter Label:</label><input id="name4" type ="text"/><br/>
+    <label>Enter Label:</label><input id="name5" type ="text"/><br/>
+
     <button onclick="save()">SAVE</button>
 
     </body>
@@ -106,18 +133,16 @@
                 };
             }
 
-            $.ajax({
-              url: 'http://ec2-54-147-250-149.compute-1.amazonaws.com:3000/saveController',    //Your api url
-              contentType:"text/plain",
-              type: 'PUT',   //type is any HTTP method
-              success: function(data) {
-                alert('Load was performed.');
-              },
-              data:JSON.stringify(result),
-            });
-
-
         }
+        $.ajax({
+          url: 'http://ec2-54-147-250-149.compute-1.amazonaws.com:3000/saveController',    //Your api url
+          contentType:"application/json",
+          type: 'PUT',   //type is any HTTP method
+          success: function(data) {
+            alert('Load was performed.');
+          },
+          data:JSON.stringify(result)
+        });
 
         console.log(result);
     }
@@ -246,6 +271,29 @@
 
     }
 
+
+
+    $( document ).ready(function() {
+    $('#name1').change(function(){
+        $('#message1').html($('#name1').val());
+        });
+        $('#name2').change(function(){
+            $('#message2').html($('#name2').val());
+            });
+            $('#name3').change(function(){
+                $('#message3').html($('#name3').val());
+                });
+                $('#name4').change(function(){
+                    $('#message4').html($('#name4').val());
+                    });
+                    $('#name5').change(function(){
+                        $('#message5').html($('#name5').val());
+                        });
+
+
+    });
+
+
     window.onload = myFunction2();
     window.onload = myFunction3();
     window.onload = myFunction4();
@@ -258,6 +306,7 @@
     window.onload = myFunction11();
     window.onload = myFunction12();
     window.onload = myFunction13();
+
   </script>
   <!-- A button -->
 </html>
