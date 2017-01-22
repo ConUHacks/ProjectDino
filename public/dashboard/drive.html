@@ -11,9 +11,10 @@
     </head>
     <body>
         <div id="chosen"></div>
+        <img style="position: absolute; top:40; left: 40;" src="http://i.imgur.com/uwApbV7.png">
         <canvas id="canvas" width="400" height="400"></canvas>
     </body>
-    <script src="api.js"></script>
+    <script id="car" src="api.js"></script>
     <script>
 
     var server = new DinoAPI("DRIVE_DEMO");
@@ -29,13 +30,7 @@
     angle = 0;
     mod = 1;
 
-    canvas = document.getElementById("canvas");
-    context = canvas.getContext("2d");
-    car = new Image();
-    car.src = "http://i.imgur.com/uwApbV7.png";
-
-
-
+    car = document.getElementById('car');
 
 
     server.startHost(function(sessionKey) {
@@ -63,18 +58,11 @@
 
 
     function draw() {
-        context = canvas.getContext("2d");
-        context.clearRect(0, 0, 400, 400);
-
         x += (speed * mod) * Math.cos(Math.PI / 180 * angle);
         y += (speed * mod) * Math.sin(Math.PI / 180 * angle);
 
-        context.save();
-        context.translate(x, y);
-        context.rotate(Math.PI / 180 * angle);
-        context.drawImage(car, -(car.width / 2), -(car.height / 2));
-        context.restore();
-        console.log(x+"   d  "+y);
+        car.left = x;
+        car.top = y;
     }
 
     </script>
